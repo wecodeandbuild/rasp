@@ -1,0 +1,37 @@
+# Step1: 
+# Connect picamera in camera port on raspberry pi kit
+# Goto raspberry pi application menu  Preferances  Raspberrypi configuration Interface  camera (enable)  press ok
+
+# Step 2: checking camera 
+# $ vcgencmd get_camera
+# Step 3:importing pi camera
+# $ sudo apt-get install python-picamera 
+# $ sudo apt-get install python3-picamera
+
+# Step 4: coding 
+#Pi_cam.py
+from  piCamera import PiCamera
+from time import sleep
+int n=0
+camera = PiCamera()
+while(n<=10):
+	camera.start_preview()
+	sleep(5)
+	camera.capture(“/home/pi/Desktop/image%s.jpg”,%n)
+	camera.stop_preview()
+	n=+1
+
+#For video :
+
+#Vcam.py
+from  picamera import PiCamera
+from time import sleep
+camera=PiCamera()
+camera.start_preview()
+sleep(10)
+camera.start_recording(“/home/pi/Desktop/video01.h264”)
+camera.stop_recording()
+camera.stop_preview()
+# step 5:
+# go to terminal and type 
+# $ python cam.py

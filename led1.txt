@@ -1,0 +1,27 @@
+"""
+Connections: 
+All grounds of leds connected to commonly on GND (pin-6)
+All +ve of leds are connected to different GPIO pins
+"""
+import RPi.GPIO as GPIO
+from time import sleep
+GPIO.setmode(GPIO.BCM)
+Segments={2,3,4,17.27.22.10}
+For i in segments:
+	GPIO.setup(i,GPIO.OUT)
+	GPIO.output(i,0)
+while(1):
+	GPIO.output(segments,(0,0,0,0,0,0,0))
+	sleep(10)
+	GPIO.output(segments,(1,1,1,1,0,0,0))
+	sleep(10)
+	GPIO.output(segments,(0,1,1,0,0,1,1))
+	sleep(10)
+	GPIO.output(segments,(1,1,0,1,1,0,1))
+	sleep(10)
+	GPIO.output(segments,(1,0,1,0,1,0,1))
+	sleep(10)
+	GPIO.output(segments,(1,1,1,0,1,1,1))
+	sleep(10)
+	GPIO.output(segments,(0,0,0,1,0,0,0))
+	sleep(10)

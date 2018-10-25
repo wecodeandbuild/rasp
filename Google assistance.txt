@@ -1,0 +1,128 @@
+ STEP 1 Firstyly register for the google API.
+  for that go to the following web address.
+  https://console.cloud.google.com/project, then we have to login with our google account then click on the " create project " link.
+ STEP 2 Enter a project name. ex "rasbrri google assistance".
+ STEP 3 Then we find 2 radical box which has option of yes and no.if we want updates then we need to click no otherwise click on yes
+ STEP 4 We need to press "create" button. this process takes some time if we can't receive a notification then click on refresh.
+ STEP 5. Click on the hamburger icon then  select “API’s and Service.
+ STEP 6. we need to click the “Enable APIS and SERVICES” link.
+ STEP 7. Type “Google Assistant” in the search box. Once the results have shown up, you need to click the
+           box that has “Google Assistant API” (2.) written on it, as this will take us to the screen to activate it.
+ STEP 8. After that we need to click on enable button.
+ STEP 9.You should now be taken back to the “APIs & services” page, here you want to click
+         “Credentials” in the sidebar.
+ STEP 10. Now that we GO on the “Credentials” screen we need to switch to the “OAuth
+          consent screen” tab.
+       (A) Afterward, you will need to enter a name in the “Project name shown to users” field
+       (B.) for our tutorial we named this “Pi Assistant Project“. If you use your name, make
+           sure you don’t use the word Google in it as it will automatically refuse you.
+      (C.) Once you have entered the Product name of your choice, you can click the “Save” button.
+
+ STEP 11. (1). With the OAuth consent screen now setup we can create some credentials for it. To
+               do this make sure you go back to the “Credentials” tab.
+          (2.) On this screen click the “Create credentials” button
+          (3.)which will open up a dropdown menu.
+          (4.)In this drop-down menu click “OAuth client ID”.
+
+STEP 12.  Now while creating your client ID, set the “Application type” to “Other”
+         (1.). You can also decide to change the “Name” for the client id, in our case we just left it set to
+               the default name.
+         (2) Finally, press the “Create” Button.
+
+STEP 13. . Now we need to download the credentials file for our newly created oAuthcredential
+           To do this click the download button as shown in the screenshot.
+           Keep this somewhere safe, as we will the text inside the file to the Raspberry Pi. (Of course,
+            unless you downloaded it directly to your Pi)   
+
+STEP 15. Finally, we need to go to the URL displayed below, on here you will need to activate
+          the following activity controls to ensure that the Google Assistant API works correctly.
+• Web & App Activity
+• Location History
+• Device Information
+• Voice & Audio Activity
+https://myaccount.google.com/activitycontrols
+Downloading and setting up Google Assistant
+    1. Now that we have setup your Google account with the Google Assistant API there are
+       a few things we need to do. Before we begin, we should update the Raspberry Pi’s
+       operating system to ensure that we are running the latest available software.
+To do this run the following two commands on the Raspberry Pi.
+
+sudo apt-get update
+sudo apt-get upgrade
+
+2. Once the Raspberry Pi has finished updating, we can then proceed with setting up
+everything we need for running the Google Assistant API.
+On your Raspberry Pi, we will be creating a file where we will store the credentials we
+downloaded earlier on our computer.
+To do this run the following two commands to create a folder and begin writing a file to
+store the credentials in.
+mkdir ~/googleassistant
+nano ~/googleassistant/credentials.json
+3. Within this file, we need to copy the contents of the credentials file that we
+downloaded to your computer. You can open the .json file in any text editor and
+press CTRL + A then CTRL + C to copy the contents.
+Now in your SSH window, right click and click “Paste”.
+4. Once you have copied the contents of your credentials over to our nano session, we
+can then save the file by pressing Ctrl + X then Y and then finally hitting Enter.
+5. Now with the credentials file now saved safely to our Raspberry Pi we will start
+installing some of the dependencies we rely on.
+Run the following command to install Python3 and the Python 3 Virtual Environment to
+our Raspberry Pi.
+sudo apt-get install python3-dev python3-venv
+6. We can now enable python3 as our virtual environment variable by running the
+following command on our Raspberry Pi.
+python3 -m venv env
+7. With that now enabled we can go ahead and ensure that we have installed the latest
+versions of pip and the setuptools. To do this, we will run the following command on the
+Raspberry Pi.
+env/bin/python -m pip install --upgrade pip setuptools --upgrade
+8. To get into this new Python environment that we have set up we should run the
+following command in terminal.
+source env/bin/activate
+9. Now that we have all the packages we need to install the Google Assistant Library, to
+do this we will run the following command to utilize pip to install the latest version of
+the Python package.
+python -m pip install --upgrade google-assistant-library
+
+ Getting the Google Assistant Running
+
+1. Now that we have set up all the prerequisites to running the Google Assistant software
+on our Raspberry Pi we can finally get up to running it.
+To do this, we must first install the Google authorization tool to our Raspberry Pi. This
+package will allow us to authenticate our device and give ourselves the rights to be able
+to make Google Assistant queries for your Google Account.
+Run the following command on the Raspberry Pi to install the Python authorization tool.
+python -m pip install --upgrade google-auth-oauthlib[tool]
+2. With the Google Authentication library now installed, we need to run it. To do this, we
+will be running the following command on our Raspberry Pi.
+This command will generate a URL you will need to go to in your web browser so be
+prepared.
+google-oauthlib-tool --client-secrets ~/googleassistant/credentials.json --scope
+https://www.googleapis.com/auth/assistant-sdk-prototype --save --headless
+3. You will now be presented with the text “Please visit this URL to authorize this
+application:” followed by a very long URL. Make sure you copy this URL entirely to
+your web browser to open it.
+4. On this screen login to your Google account, if you have multiple accounts make sure
+you select the one you set up your API key with.
+Afterward, you should be presented with a screen with the text “Please copy this code,
+switch to your application and paste it there” followed by a long authentication code.
+Copy the authentication code and paste it back into your terminal session and press enter.
+If the authentication was accepted you should see the following line appear on your
+command line:
+“credentials saved: /home/pi/.config/google-oauthlib-tool/credentials.json”
+5. Finally, we have finished setting up everything we need to ruin the Google Assistant
+sample on our Raspberry Pi. All that is left to do now is to run it. We can run the
+software by running the following command on your Raspberry Pi.
+google-assistant-demo
+6. Say “Ok Google” or “Hey Google“, followed by your query. The Google Assistant
+should give you a response. If the Assistant software doesn’t respond to your voice, then
+make sure that you have correctly setup your microphone and speakers by checking all
+cables.
+
+Now connect your bluetooth device with rasberry pi bluetooth.
+then run following coomands 
+ aplay /usr/share/sounds/alsa/front_center.wav
+ aplay /usr/lib/libreoffice/share/gallary/sounds/com.wav
+
+check manual for screeshots 
+

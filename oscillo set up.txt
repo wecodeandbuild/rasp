@@ -1,0 +1,42 @@
+#VCC – 1
+#GND – 6
+#SDA – 3
+#SCL – 5
+
+step 1: Enable Raspberry Pi I2C interface
+goto Application menu  Preferences  raspberry pi configuration  enable I2C  press Ok button
+
+Step 2: Update the Raspberry pi
+$ sudo apt-get update
+
+
+Step 3: Install the Adafruit ADS1115 library for ADC
+Go to raspberry pi home directory
+$ cd ~
+Install build esensials
+$ sudo apt-get install build-essential python-dev python-smbus git
+clone the Adafruit git folder for the library
+$ git clone https://github.com/adafruit/Adafruit_Python_ADS1x15.git 
+go to the clone directory 
+$ cd Adafruit_Python_ADS1x1z
+now run setup file
+$ sudo python setup.py install
+
+Step 4: Test the library and 12C communication
+Change directory to examples
+$cd examples
+Run sampletest .py to check communication
+$ python simpletest.py
+
+Step 5: Install Matplotlib
+Matplot is a plotter module which plots any type of graph 
+$ sudo apt-get install python-matplotlib
+
+Step6: Install the Drawnow python module
+This module help matplot to draw live changes
+$ sudo pip install drawnow
+
+Step 6: python code
+Create a python file at the same folder and write following codes
+$ sudo nano scope.py
+

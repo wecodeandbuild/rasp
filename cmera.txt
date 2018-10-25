@@ -1,0 +1,17 @@
+#Run in terminal:
+
+sudo apt-get install python-pip 
+sudo pip install picamera
+----------------------------------------------------------------------
+#Python Code:
+
+from picamera import PiCamera
+from time import sleep
+cam = PiCamera()
+cam.start_preview()
+cam.start_recording('/home/pi/Desktop/h264')
+sleep(5)
+cam.start_capture('/home/pi/Desktop/h264')
+sleep(5)
+cam.stop_recording()
+cam.stop_preview()

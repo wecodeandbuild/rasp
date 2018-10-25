@@ -1,0 +1,42 @@
+#sudo apt-get install python-pip
+#sudo pip install telepot
+import sys
+import time
+import random
+import datetime
+import telepot
+import random
+import RPi.GPIO as GPIO
+from telepot.loop import MessageLoop
+
+green=3
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(green,GPIO.OUT)
+GPIO.output(green,0)
+
+
+message =" "
+
+def action(msg):
+    chat_id = msg['chat']['id']
+    command = msg['text']
+    print'recieverd: %s ' %command
+    if 'on' in command:
+        message = "turn on"
+        GPIO.output(green,1)
+        telegram_bot.sendMessage(chat_id, message)
+    if 'off' in command:
+        message = "turn off"
+        GPIO.output(green,0)
+        telegram_bot.sendMessage(chat_id, message)
+   
+
+telegram_bot =telepot.Bot('668506752:AAEy1qC_FqY_OsaO3Wiebmayx27lLdPXcVk')
+print(telegram_bot.getMe())
+
+MessageLoop(telegram_bot,action).run_as_thread()
+print'UP&running'
+
+while(1) :
+    time.sleep(10)
